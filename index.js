@@ -75,10 +75,10 @@ var streamingDocumentStore = function(root, stream) {
   var pack = tar.pack(); // pack is a streams2 stream
   pack.pipe(stream);
 
-  var dbDir = root;
+  var dbDir;
   return {
     addDatabase: function addDatabase(dbName, next) {
-      dbDir = path.join(root, dbName);
+      dbDir = dbName;
       pack.entry({name: dbDir, type: 'directory'});
       next();
     },
